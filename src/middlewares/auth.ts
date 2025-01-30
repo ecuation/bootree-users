@@ -3,10 +3,12 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { NotAuthorizedError } from '../errors/not-authorized-error';
 import { UserPayload } from '../types/user-payload';
+import { RevokedToken } from '../models/revoked-token';
 
 export const auth = async (req: Request, res: Response, next: NextFunction) => {
     const token = req.header('Authorization')?.split(' ')[1];
-    if (!token) {
+    const revokedToken = await RevokedToken.find({ token });
+    if (!token || revokedToken.length) {
         throw new NotAuthorizedError();
     }
 

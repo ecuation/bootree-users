@@ -6,6 +6,7 @@ import { NotFoundError } from './errors/not-found-error';
 import { registerRouter } from './routes/register';
 import { authUserRouter } from './routes/auth-user';
 import { loginRouter } from './routes/login';
+import { signoutRouter } from './routes/signout';
 
 const app = express();
 app.use(json());
@@ -13,6 +14,7 @@ app.use(json());
 app.use(registerRouter);
 app.use(authUserRouter);
 app.use(loginRouter);
+app.use(signoutRouter);
 
 app.all('/*any', (req: Request, res: Response) => {
     throw new NotFoundError();
