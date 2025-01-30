@@ -1,5 +1,7 @@
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.test' });
 
 let mongo: any;
 beforeAll(async () => {
