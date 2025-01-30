@@ -1,11 +1,9 @@
-import express from 'express';
+import { app } from './app';
 
-const app = express();
+const init = async () => {
+    app.listen(3000, () => {
+        console.log('Server is running on port 3000');
+    });
+};
 
-app.get('/api/users', (req, res) => {
-    res.send('Hello World it\'s me, Mariooooo!');
-});
-
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+init();
