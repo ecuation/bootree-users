@@ -1,18 +1,5 @@
 import mongoose from 'mongoose';
-
-interface RevokedTokenAttributes {
-    token: string;
-    revokedAt: Date;
-}
-
-interface RevokedTokenModel extends mongoose.Model<RevokedTokenDoc> {
-    build(attrs: RevokedTokenAttributes): RevokedTokenDoc;
-}
-
-interface RevokedTokenDoc extends mongoose.Document {
-    token: string;
-    revokedAt: Date;
-}
+import { RevokedTokenModel, RevokedTokenDoc } from '../types/revoked-token-types';
 
 const revokedTokenScheema = new mongoose.Schema(
     {
