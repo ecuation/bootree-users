@@ -1,15 +1,18 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
-import { registerRouter } from './routes/register';
-import { authUserRouter } from './routes/auth-user';
 import { errorHandler } from './middlewares/error-handler';
 import { NotFoundError } from './errors/not-found-error';
+
+import { registerRouter } from './routes/register';
+import { authUserRouter } from './routes/auth-user';
+import { loginRouter } from './routes/login';
 
 const app = express();
 app.use(json());
 
 app.use(registerRouter);
 app.use(authUserRouter);
+app.use(loginRouter);
 
 app.all('/*any', (req: Request, res: Response) => {
     throw new NotFoundError();
