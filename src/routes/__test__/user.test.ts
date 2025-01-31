@@ -13,15 +13,15 @@ it('returns the user if is registered', async () => {
         .send()
         .expect(200);
 
-    expect(response.body.user.email).toEqual(email);
+    expect(response.body.email).toEqual(email);
 });
 
 it('returns 401 if the user is not registered', async () => {
-    const token = generateToken('falsetoken');
+    const token = generateToken('blabla');
     const response = await request(app)
         .get('/api/users/currentuser')
         .set('Authorization', `Bearer ${token}`)
         .send()
         .expect(401);
-    expect(response.body.user).toBeUndefined();
+    expect(response.body.email).toBeUndefined();
 });

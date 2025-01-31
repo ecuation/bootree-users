@@ -13,7 +13,9 @@ const generateToken = (id: string): string => {
 }
 
 const revokeToken = async (token: string) => {
-    if (token) {
+    const tokenExists = await RevokedToken.exists({ token });
+
+    if (!tokenExists) {
         const revokedToken = new RevokedToken({
             token,
             revokedAt: new Date()
