@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { createUser } from '../../test/helpers/helper';
-import { generateToken } from '../../services/jwt-generator';
+import { generateToken } from '../../actions/jwt-generator';
 import { RevokedToken } from '../../models/revoked-token';
 
 it('returns 200 on successful signout', async () => {

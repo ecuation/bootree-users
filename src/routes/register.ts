@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { validateRequest } from '../middlewares/validate-request';
 import { User } from '../models/user';
-import { generateToken } from '../services/jwt-generator';
+import { generateToken } from '../actions/jwt-generator';
 
 const router = express.Router();
 

@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { createUser } from '../../test/helpers/helper';
-import { generateToken } from '../../services/jwt-generator';
+import { generateToken } from '../../actions/jwt-generator';
 
 it('returns the user if is registered', async () => {
     const email = 'test@test.dev';

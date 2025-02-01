@@ -1,5 +1,5 @@
 import express from 'express';
-import { revokeToken } from '../services/jwt-generator';
+import { revokeToken } from '../actions/jwt-revoke';
 import { BadRequestError } from '../errors/bad-request-error';
 
 const router = express.Router();

@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 
-import { Password } from '../services/password';
+import { Password } from '../actions/password';
 import { User } from '../models/user';
 import { validateRequest } from '../middlewares/validate-request';
 import { BadRequestError } from '../errors/bad-request-error';
-import { generateToken } from '../services/jwt-generator';
+import { generateToken } from '../actions/jwt-generator';
 
 const router = express.Router();
 

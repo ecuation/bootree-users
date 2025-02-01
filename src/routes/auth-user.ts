@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { auth } from '../middlewares/auth';
 import { UserPayload } from '../types/user-payload';
+import { NotAuthorizedError } from '../errors/not-authorized-error';
 
 const router = express.Router();
 const secret = process.env.JWT_SECRET;
@@ -39,8 +40,12 @@ if (!secret) {
 router.get('/api/users/currentuser', auth, async (req, res) => {
     const token = req.header('Authorization')?.split(' ')[1];
     const verification = jwt.verify(token!, secret) as UserPayload;
-    const user = await User.findById(verification.id);
-    res.send({ email: user?.email, id: user?.id });
+    try {
+        const user = await User.findById(verification.id);
+        res.send({ email: user?.email, id: user?.id });
+    } catch (error) {
+        throw new NotAuthorizedError();
+    }
 });
 
 export { router as authUserRouter };
