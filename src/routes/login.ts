@@ -1,11 +1,7 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { body } from 'express-validator';
-
-import { Password } from '../actions/password';
-import { User } from '../models/user';
 import { validateRequest } from '../middlewares/validate-request';
-import { BadRequestError } from '../errors/bad-request-error';
-import { generateToken } from '../actions/jwt-generator';
+import { loginRequest } from '../controllers/auth-controller';
 
 const router = express.Router();
 
@@ -61,22 +57,6 @@ router.post('/api/users/login', [
         .trim()
         .notEmpty()
         .withMessage('A password is needed')
-], validateRequest, async (req: Request, res: Response) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-
-    if (!user) {
-        throw new BadRequestError('Invalid credentials');
-    }
-
-    const matchPassword = await Password.compare(user.password, password);
-
-    if (!matchPassword) {
-        throw new BadRequestError('Invalid credentials');
-    }
-
-    const bearer = generateToken(user.id);
-    res.send({ bearer });
-});
+], validateRequest, loginRequest);
 
 export { router as loginRouter };

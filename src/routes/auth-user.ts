@@ -1,16 +1,8 @@
 import express from 'express';
-import jwt from 'jsonwebtoken';
-import { User } from '../models/user';
 import { auth } from '../middlewares/auth';
-import { UserPayload } from '../types/user-payload';
-import { NotAuthorizedError } from '../errors/not-authorized-error';
+import { currentUser } from '../controllers/auth-controller';
 
 const router = express.Router();
-const secret = process.env.JWT_SECRET;
-
-if (!secret) {
-    throw new Error('JWT_SECRET must be defined');
-}
 
 /**
  * @swagger
@@ -37,15 +29,6 @@ if (!secret) {
  *       401:
  *         description: Unauthorized - Invalid or missing token
  */
-router.get('/api/users/currentuser', auth, async (req, res) => {
-    const token = req.header('Authorization')?.split(' ')[1];
-    const verification = jwt.verify(token!, secret) as UserPayload;
-    try {
-        const user = await User.findById(verification.id);
-        res.send({ email: user?.email, id: user?.id });
-    } catch (error) {
-        throw new NotAuthorizedError();
-    }
-});
+router.get('/api/users/currentuser', auth, currentUser);
 
 export { router as authUserRouter };
