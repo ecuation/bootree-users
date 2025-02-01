@@ -35,7 +35,7 @@ const options = {
         },
         security: [
             {
-                bearerAuth: [], // Applies Bearer Token globally
+                bearerAuth: [],
             },
         ],
     },

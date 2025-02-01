@@ -40,10 +40,6 @@ it('should return not authorized request after signout', async () => {
 });
 
 it('should retiurn 400 if token is not provided', async () => {
-    const email = 'test@test.dev';
-    const user = await createUser(email, 'password');
-    const token = generateToken(user.id);
-
     await request(app)
         .post('/api/users/signout')
         .send({})
