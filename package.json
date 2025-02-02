@@ -11,7 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@bootree/common": "^1.0.3",
+    "@bootree/common": "^1.0.4",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/swagger-jsdoc": "^6.0.4",
