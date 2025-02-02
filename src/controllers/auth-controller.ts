@@ -2,9 +2,8 @@ import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user';
 import { UserPayload } from '../types/user-payload';
-import { NotAuthorizedError } from '../errors/not-authorized-error';
 import { Password } from '../actions/password';
-import { BadRequestError } from '../errors/bad-request-error';
+import { BadRequestError, NotAuthorizedError } from '@bootree/common';
 import { generateToken } from '../actions/jwt-generator';
 import { revokeToken } from '../actions/jwt-revoke';
 

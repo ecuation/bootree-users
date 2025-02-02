@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { createUser } from '../../test/helpers/helper';
 import { generateToken } from '../../actions/jwt-generator';
-import { RevokedToken } from '../../models/revoked-token';
+import { RevokedToken } from '@bootree/common';
 
 it('returns 200 on successful signout', async () => {
     const email = 'test@test.dev';

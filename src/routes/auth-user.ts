@@ -1,5 +1,5 @@
 import express from 'express';
-import { auth } from '../middlewares/auth';
+import { auth } from '@bootree/common';
 import { currentUser } from '../controllers/auth-controller';
 
 const router = express.Router();

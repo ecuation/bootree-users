@@ -1,9 +1,7 @@
 import express, { Request, Response } from 'express';
 import { json } from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-
-import { errorHandler } from './middlewares/error-handler';
-import { NotFoundError } from './errors/not-found-error';
+import { errorHandler, NotFoundError } from '@bootree/common';
 
 import { registerRouter } from './routes/register';
 import { authUserRouter } from './routes/auth-user';
