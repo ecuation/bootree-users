@@ -46,7 +46,7 @@ All endpoints have test for happy paths and unhappy paths, you can run tests by 
 
 2. The API will be available at `http://localhost:3000`.
 
-## API Endpoints documentation
+## API Endpoints documentation (Swagger)
 
 There is swagger documentation in path to view an test endpoints [here](http://bootree.test/api/users/api-docs)
 
