@@ -1,18 +1,11 @@
-import mongoose from 'mongoose';
 import { app } from './app';
+import { MongooseDatabase } from './database/mongoose/mongoose-database';
+import { Database } from './database/database-interface';
+
+const database: Database = new MongooseDatabase();
 
 const init = async () => {
-    if (!process.env.MONGO_URI) {
-        throw new Error('MONGO_URI is not defined');
-    }
-
-    try {
-        await mongoose.connect(process.env.MONGO_URI);
-        console.log(`Connection succesfful to ${process.env.MONGO_URI}`);
-    } catch (error) {
-        console.error(error);
-    }
-
+    database.connect();
     app.listen(3000, () => {
         console.log('Server is running on port 3000');
     });

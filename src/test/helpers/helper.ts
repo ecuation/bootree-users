@@ -1,8 +1,8 @@
-import { User } from "../../models/user";
+import { UserRepository } from "../../database/repositories/user-repository";
+const userRepo = new UserRepository();
 
 const createUser = async (email: string, password: string) => {
-    const user = User.build({ email, password });
-    await user.save();
+    const user = userRepo.createUser(email, password);
     return user
 };
 
